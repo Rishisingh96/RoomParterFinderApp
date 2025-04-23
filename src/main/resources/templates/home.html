@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  th:replace="~{main :: parent(~{::#content},~{::title},~{::script})}"
+  xmlns:th="http://www.w3.org/1999/xhtml"
+>
+  <head>
+    <title>Home page</title>
+  </head>
+
+  <body
+    class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 text-gray-900"
+  >
+    <div id="content">̥
+      <!-- Banner Section -->
+      <section
+        class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-20 shadow-md"
+      >
+        <div class="container mx-auto text-center px-4">
+          <h2 class="text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+            Welcome to 🏠 Room Partner Finder Web App
+          </h2>
+          <p class="text-lg font-medium mb-8 text-gray-900 dark:text-white">
+            Find your ideal roommate based on your lifestyle and preferences.
+            Start your journey today!
+          </p>
+          <a
+            data-th-href="@{'/user/contacts'}"
+            class="bg-white text-blue-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300 shadow-lg"
+          >
+            Get Started
+          </a>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section
+        class="py-20 bg-gray-50 dark:bg-gray-800 transition duration-300"
+      >
+        <div class="container mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-12 text-gray-900 dark:text-white">
+            Why Choose Us?
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <a data-th-href="@{'/user/contacts/add'}">
+              <div
+                class="p-6 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl shadow-md hover:shadow-xl transition transform hover:scale-105"
+              >
+                <i class="fas fa-user-plus text-blue-600 text-5xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Create Your Profile</h3>
+                <p class="text-gray-700 dark:text-gray-300">
+                  Sign up and build your profile to start finding matching room
+                  partners.
+                </p>
+              </div>
+            </a>
+
+            <div
+              class="p-6 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl shadow-md hover:shadow-xl transition transform hover:scale-105"
+            >
+              <i class="fas fa-shield-alt text-blue-600 text-5xl mb-4"></i>
+              <h3 class="text-xl font-bold mb-2">Safe & Verified</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                We prioritize safety. All users are verified for a secure
+                experience.
+              </p>
+            </div>
+
+            <a data-th-href="@{'/user/contacts'}">
+              <div
+                class="p-6 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl shadow-md hover:shadow-xl transition transform hover:scale-105"
+              >
+                <i class="fas fa-search text-blue-600 text-5xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Smart Matchmaking</h3>
+                <p class="text-gray-700 dark:text-gray-300">
+                  Connect with potential roommates that align with your
+                  lifestyle.
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="bg-blue-700 text-white py-20">
+        <div class="container mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-4">
+            Ready to Find Your Perfect Room Partner?
+          </h2>
+          <p class="text-lg mb-8">
+            Join now and connect with people looking for roommates like you!
+          </p>
+          <a
+            data-th-href="@{'register'}"
+            class="bg-white text-blue-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition duration-300"
+          >
+            Create an Account
+          </a>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-12">What Our Users Say</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div
+              class="p-6 bg-white dark:bg-gray-700 border dark:border-gray-600 rounded-xl shadow"
+            >
+              <p class="italic text-gray-800 dark:text-gray-200">
+                "I found a roommate within days! This app is super easy to use
+                and trustworthy."
+              </p>
+              <h4 class="mt-4 font-semibold">- Rahul Verma</h4>
+            </div>
+            <div
+              class="p-6 bg-white dark:bg-gray-700 border dark:border-gray-600 rounded-xl shadow"
+            >
+              <p class="italic text-gray-800 dark:text-gray-200">
+                "A must-use platform for anyone moving to a new city. It saved
+                me so much time!"
+              </p>
+              <h4 class="mt-4 font-semibold">- Sneha Mishra</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Form -->
+      <section class="py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-12 text-gray-900 dark:text-white">
+            Contact Us
+          </h2>
+          <form class="max-w-lg mx-auto">
+            <input
+              type="text"
+              placeholder="Your Name"
+              class="w-full px-4 py-3 mb-4 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              class="w-full px-4 py-3 mb-4 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+            />
+            <textarea
+              placeholder="Your Message"
+              class="w-full px-4 py-3 mb-4 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+            ></textarea>
+            <button
+              type="submit"
+              class="bg-blue-700 text-white px-6 py-3 rounded font-semibold hover:bg-blue-800 transition duration-300"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-gray-900 text-white py-6">
+        <div class="container mx-auto text-center">
+          <p class="mb-2">
+            &copy; 2024 Room Partner Finder App. All rights reserved. by Rishi
+            Singh
+          </p>
+          <p>
+            Follow us on
+            <a href="#" class="text-blue-400 hover:underline">Facebook</a>,
+            <a href="#" class="text-blue-400 hover:underline">Twitter</a>, and
+            <a href="#" class="text-blue-400 hover:underline">Instagram</a>.
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      console.log("Enhanced dark-light UI loaded.");
+    </script>
+  </body>
+</html>

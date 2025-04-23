@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  th:replace="~{main :: parent(~{::#content},~{::title},~{::script})}"
+  xmlns:th="http://www.w3.org/1999/xhtml"
+>
+  <head>
+    <title>Partner Finder Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <div id="content">
+      <!-- Banner Section -->
+      <section
+        class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-20 shadow-md"
+      >
+        <div class="container mx-auto text-center px-4">
+          <h2 class="text-5xl font-bold mb-4">
+            Welcome to 🏠 Room Partner Finder Web App
+          </h2>
+          <p class="text-lg font-medium mb-8">
+            Find your ideal roommate based on your lifestyle and preferences.
+            Start your journey today!
+          </p>
+          <a
+            data-th-href="@{'/user/contacts'}"
+            class="bg-white text-blue-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300 shadow-lg"
+          >
+            Get Started
+          </a>
+        </div>
+      </section>
+
+      <!-- Filter Section -->
+      <section
+        class="bg-white mt-8 p-8 rounded-xl shadow-lg max-w-7xl mx-auto dark:bg-gray-800 dark:text-gray-200"
+      >
+        <h2
+          class="text-2xl font-semibold text-teal-700 text-center mb-8 dark:text-teal-300"
+        >
+          Filter Your Ideal Room Partner
+        </h2>
+
+        <form id="filterForm" class="space-y-6">
+          <!-- First Row -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- State -->
+            <div>
+              <label
+                for="state"
+                class="block font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >State</label
+              >
+              <select
+                id="state"
+                name="state"
+                class="w-full border border-gray-300 rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+              >
+                <option value="">--Select State--</option>
+              </select>
+            </div>
+
+            <!-- City -->
+            <div>
+              <label
+                for="city"
+                class="block font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >City</label
+              >
+              <select
+                id="city"
+                name="city"
+                class="w-full border border-gray-300 rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+              >
+                <option value="">--Select City--</option>
+              </select>
+            </div>
+
+            <!-- Area -->
+            <div>
+              <label
+                for="area"
+                class="block font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >Area</label
+              >
+              <select
+                id="area"
+                name="area"
+                class="w-full border border-gray-300 rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+              >
+                <option value="">--Select Area--</option>
+              </select>
+            </div>
+
+            <!-- College -->
+            <div>
+              <label
+                for="college"
+                class="block font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >College</label
+              >
+              <select
+                id="college"
+                name="college"
+                class="w-full border border-gray-300 rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+              >
+                <option value="">--Select College--</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Second Row -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Religion -->
+            <div>
+              <label
+                for="religion"
+                class="block font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >Religion</label
+              >
+              <select
+                id="religion"
+                name="religion"
+                class="w-full border border-gray-300 rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+              >
+                <option value="">--Select Religion--</option>
+                <option value="Hindu">Hindu</option>
+                <option value="Muslim">Muslim</option>
+                <option value="Sikh">Sikh</option>
+                <option value="Christian">Christian</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- Occupation -->
+            <div>
+              <label
+                for="occupation"
+                class="block font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >Occupation</label
+              >
+              <select
+                id="occupation"
+                name="occupation"
+                class="w-full border border-gray-300 rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+              >
+                <option value="">--Select Occupation--</option>
+                <option value="Student">Student</option>
+                <option value="Job">Job</option>
+              </select>
+            </div>
+
+            <!-- Study Field (hidden by default) -->
+            <div id="studyFieldGroup" class="hidden">
+              <label
+                for="studyField"
+                class="block font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >What to Study</label
+              >
+              <select
+                id="studyField"
+                name="studyField"
+                class="w-full border border-gray-300 rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+              >
+                <option value="">--Select Course--</option>
+                <option value="BCA">BCA</option>
+                <option value="MCA">MCA</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="MBA">MBA</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- Job Type (hidden by default) -->
+            <div id="jobTypeGroup" class="hidden">
+              <label
+                for="jobType"
+                class="block font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >Job Type</label
+              >
+              <select
+                id="jobType"
+                name="jobType"
+                class="w-full border border-gray-300 rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+              >
+                <option value="">--Select Job Type--</option>
+                <option value="Government">Government</option>
+                <option value="Private">Private</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Third Row -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Gender -->
+            <div>
+              <label
+                for="gender"
+                class="block font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >Gender</label
+              >
+              <select
+                id="gender"
+                name="gender"
+                class="w-full border border-gray-300 rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+              >
+                <option value="">--Select Gender--</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <!-- Age -->
+            <div>
+              <label
+                for="age"
+                class="block font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >Age</label
+              >
+              <select
+                id="age"
+                name="age"
+                class="w-full border border-gray-300 rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+              >
+                <option value="">--Select Age--</option>
+                <!-- Age options added via JS -->
+              </select>
+            </div>
+
+            <!-- Food Preference -->
+            <div>
+              <label
+                for="foodPreference"
+                class="block font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >Food Preference</label
+              >
+              <select
+                id="foodPreference"
+                name="foodPreference"
+                class="w-full border border-gray-300 rounded-lg p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+              >
+                <option value="">--Select Food Preference--</option>
+                <option value="Veg">Veg</option>
+                <option value="Non-Veg">Non-Veg</option>
+                <option value="Both">Both</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex justify-center gap-4 pt-6">
+            <button
+              type="submit"
+              class="bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-6 rounded-lg"
+            >
+              Search Partner
+            </button>
+            <button
+              type="reset"
+              class="bg-gray-300 hover:bg-gray-400 text-black font-medium py-2 px-6 rounded-lg"
+            >
+              Reset Filters
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <script data-th-src="@{'js/filter.js'}"></script>
+      <script>
+        console.log("Welcome to partner finder page");
+      </script>
+    </div>
+  </body>
+</html>
