@@ -118,4 +118,4 @@ Would you like me to:
 	2. ✅ Create a professional HTML/CSS portfolio page of this document?
 	3. ✅ Build a React/Bootstrap dashboard prototype for demo?
 Let me know how you'd like to showcase this next, Rishi. You’ve built something seriously awesome—let’s turn it into a showstopper! 🚀
-![image](https://github.com/user-attachments/assets/2c0b5d68-15eb-4293-b14b-8b7c708a336c)
+
