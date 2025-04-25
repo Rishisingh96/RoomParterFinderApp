@@ -119,3 +119,27 @@ Would you like me to:
 	3. ✅ Build a React/Bootstrap dashboard prototype for demo?
 Let me know how you'd like to showcase this next, Rishi. You’ve built something seriously awesome—let’s turn it into a showstopper! 🚀
 
+![Home Page](https://github.com/user-attachments/assets/de586ea1-6df7-4713-8799-18c64d8f9d7e)
+![Home page 2](https://github.com/user-attachments/assets/af814ade-f788-443c-835c-487b4b681a25)
+![Partner_Finder Web App](https://github.com/user-attachments/assets/4c53cc85-3ece-4489-89de-810be153d463)
+![SpringCode 1](https://github.com/user-attachments/assets/4ee46219-052d-4508-90b4-a28911224827)
+![Create Account mysql](https://github.com/user-attachments/assets/f90a5218-305d-402c-ba9d-b7eb107033b5)
+
+![Login form](https://github.com/user-attachments/assets/0732aae4-43e3-4478-ac4b-8ba7abcb3f8d)
+
+![Login with Google Account](https://github.com/user-attachments/assets/ab1b9455-5fdc-450e-bd46-9c1fabc72c13)
+![Login with Google ](https://github.com/user-attachments/assets/e7c1b2fd-2313-4df4-a47c-f30ef1171de9)
+
+![Registration form](https://github.com/user-attachments/assets/c4615cf6-9f4b-430d-8e4b-d86a9e56d268)
+![Sinup form](https://github.com/user-attachments/assets/c6010390-3cca-4127-9b65-380bc600eaac)
+![Singup and Validation chek ](https://github.com/user-attachments/assets/27d73559-68c3-499e-b630-17f05163e99a)
+
+![Profile View](https://github.com/user-attachments/assets/95b5fca8-3c29-4fe8-a6a4-1a9c0308fb11)
+
+![Create Account 1](https://github.com/user-attachments/assets/28c86bfe-fec7-420a-a8a6-44b5101dda54)
+![Create Account Sussefully Save](https://github.com/user-attachments/assets/eab0a6cc-72cd-46e0-a877-42bc711b271a)
+
+
+![Cloudinary cloude for store image](https://github.com/user-attachments/assets/5a29efb7-7a44-4eb1-952d-79bcf41802a7)
+![View Account Details](https://github.com/user-attachments/assets/57453826-4355-4040-92b4-fb0c39e41cc2)
+
