@@ -130,7 +130,6 @@ Let me know how you'd like to showcase this next, Rishi. You’ve built somethin
 ![Login with Google Account](https://github.com/user-attachments/assets/ab1b9455-5fdc-450e-bd46-9c1fabc72c13)
 ![Login with Google ](https://github.com/user-attachments/assets/e7c1b2fd-2313-4df4-a47c-f30ef1171de9)
 
-![Registration form](https://github.com/user-attachments/assets/c4615cf6-9f4b-430d-8e4b-d86a9e56d268)
 ![Sinup form](https://github.com/user-attachments/assets/c6010390-3cca-4127-9b65-380bc600eaac)
 ![Singup and Validation chek ](https://github.com/user-attachments/assets/27d73559-68c3-499e-b630-17f05163e99a)
 
