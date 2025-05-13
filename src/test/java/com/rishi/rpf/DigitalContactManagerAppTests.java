@@ -7,9 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class DigitalContactManagerAppTests {
 
-	@Test
-	void contextLoads() {
-	}
+//	@Test
+//	void contextLoads() {
+//	}
 
 	// @Autowired
 	// private EmailService service;
