@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.rishi.rpf.services.impl.SecurityCustomUserDetailService;
+import com.rishi.rpf.config.LoginSuccessHandler;
 
 @Configuration
 public class SecurityConfig {
@@ -45,6 +46,9 @@ public class SecurityConfig {
     @Autowired
     private AuthFailureHandler authFailureHandler;
 
+    @Autowired
+    private LoginSuccessHandler loginSuccessHandler;
+
     //configuraiton of authentication provider for spring security 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
@@ -65,6 +69,7 @@ public class SecurityConfig {
         // rangenge
         httpSecurity.authorizeHttpRequests(authorize -> {
             // authorize.requestMatchers("/home", "/register").permitAll();
+            authorize.requestMatchers("/admin/**").hasRole("ADMIN");
             authorize.requestMatchers("/user/**").authenticated();
             authorize.anyRequest().permitAll();
         });
@@ -76,7 +81,7 @@ public class SecurityConfig {
         httpSecurity.formLogin(formLogin -> {
             formLogin.loginPage("/login");
             formLogin.loginProcessingUrl("/authenticate");
-            formLogin.successForwardUrl("/user/profile");
+            formLogin.successHandler(loginSuccessHandler);
             // formLogin.successForwardUrl("/user/profile");
             // formLogin.failureForwardUrl("/login?error=true");
             // formLogin.defaultSuccessUrl("/home");

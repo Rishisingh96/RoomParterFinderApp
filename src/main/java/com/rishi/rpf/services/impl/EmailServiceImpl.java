@@ -1,39 +1,45 @@
-// package com.rishi.scm.services.impl;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.beans.factory.annotation.Value;
-// import org.springframework.mail.SimpleMailMessage;
-// import org.springframework.mail.javamail.JavaMailSender;
-// import org.springframework.stereotype.Service;
+package com.rishi.rpf.services.impl;
 
-// import com.rishi.scm.services.EmailService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.MailException;
+import org.springframework.mail.MailSendException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
 
-// @Service
-// public class EmailServiceImpl implements EmailService{
-    
-//     @Autowired
-//     private JavaMailSender eMailSender;
+import com.rishi.rpf.services.EmailService;
 
-//     @Value("${spring.mail.properties.domain_name}")
-//     private String domainName;
-    
-//     @Override
-//     public void sendEmail(String to, String subject, String body) {
-//         SimpleMailMessage message = new SimpleMailMessage();
-//         message.setTo(to);
-//         message.setSubject(subject);
-//         message.setText(body);
-//         message.setFrom(domainName);
-//         eMailSender.send(message);
-//     }
+@Service
+public class EmailServiceImpl implements EmailService {
 
-//     @Override
-//     public void sendEmailWithHtml() {
-//         throw new UnsupportedOperationException("Not supported yet.");
-//     }
+    private static final Logger logger = LoggerFactory.getLogger(EmailServiceImpl.class);
 
-//     @Override
-//     public void sendEmailWithAttachment() {
-//         throw new UnsupportedOperationException("Not supported yet.");
-//     }
-    
-// }
+    @Autowired
+    private JavaMailSender mailSender;
+
+    @Value("${spring.mail.username}")
+    private String fromEmail;
+
+    @Override
+    public void sendEmail(String to, String subject, String body) throws MailException {
+        try {
+            logger.info("Attempting to send email to: {}", to);
+            SimpleMailMessage msg = new SimpleMailMessage();
+            msg.setTo(to);
+            msg.setSubject(subject);
+            msg.setText(body);
+            msg.setFrom(fromEmail);
+            mailSender.send(msg);
+            logger.info("Email sent successfully to: {}", to);
+        } catch (MailException e) {
+            logger.error("Failed to send email to: {}. Error: {}", to, e.getMessage(), e);
+            throw e; // Re-throw to let the caller handle it
+        } catch (Exception e) {
+            logger.error("Unexpected error while sending email to: {}. Error: {}", to, e.getMessage(), e);
+            throw new MailSendException("Failed to send email: " + e.getMessage(), e);
+        }
+    }
+}

@@ -265,6 +265,29 @@
         </form>
       </section>
 
+      <!-- Results Table -->
+      <div class="mt-8">
+        <table
+          class="min-w-full bg-white dark:bg-gray-800 rounded-lg overflow-hidden"
+        >
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Name</th>
+              <th class="px-4 py-2">State</th>
+              <th class="px-4 py-2">City</th>
+              <th class="px-4 py-2">Area</th>
+              <th class="px-4 py-2">College</th>
+              <th class="px-4 py-2">Religion</th>
+              <th class="px-4 py-2">Occupation</th>
+              <th class="px-4 py-2">Gender</th>
+              <th class="px-4 py-2">Age</th>
+              <th class="px-4 py-2">Food Preference</th>
+            </tr>
+          </thead>
+          <tbody id="resultsTableBody"></tbody>
+        </table>
+      </div>
+
       <script data-th-src="@{'js/filter.js'}"></script>
       <script>
         console.log("Welcome to partner finder page");

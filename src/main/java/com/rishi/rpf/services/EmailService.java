@@ -1,12 +1,5 @@
-// package com.rishi.scm.services;
+package com.rishi.rpf.services;
 
-// public interface  EmailService {
-//     //
-//     void sendEmail(String to , String subject, String body);
-
-//     //
-//     void sendEmailWithHtml();
-
-//     //
-//     void sendEmailWithAttachment();
-// }
+public interface EmailService {
+    void sendEmail(String to, String subject, String body);
+}

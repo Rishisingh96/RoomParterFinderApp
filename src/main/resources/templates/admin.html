@@ -1,14 +1,69 @@
 <!DOCTYPE html>
-<html lang="en"
-      th:replace="~{main :: parent(~{::#content},~{::title},~{::script})}" xmlns:th="http://www.w3.org/1999/xhtml"
+<html
+  lang="en"
+  th:replace="~{main :: parent(~{::#content},~{::title},~{::script})}"
+  xmlns:th="http://www.w3.org/1999/xhtml"
 >
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<section id="content" class="text-gray-900 dark:text-white">
-    <h1 text-content="bg-blue-600">Welcome to service parent1-fragment</h1>
-</section>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" th:href="@{/static/css/style.css}" />
+    <script defer th:src="@{/static/js/admin.js}"></script>
+    <style>
+      .btn {
+        padding: 6px 10px;
+        border-radius: 6px;
+      }
+      .btn-primary {
+        background: #0ea5e9;
+        color: #fff;
+      }
+      .btn-red {
+        background: #ef4444;
+        color: #fff;
+      }
+      .btn-gray {
+        background: #6b7280;
+        color: #fff;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 8px 10px;
+        border-bottom: 1px solid #334155;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="content" class="text-gray-900 dark:text-white">
+      <h1 class="text-2xl font-semibold mb-4">Admin Panel</h1>
+
+      <div class="mb-4 flex gap-4">
+        <button id="refreshBtn" class="btn btn-primary">Refresh Users</button>
+        <div id="stats" class="text-sm opacity-80"></div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Enabled</th>
+              <th>Roles</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminUsersBody">
+            <tr>
+              <td colspan="5">Loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </body>
 </html>

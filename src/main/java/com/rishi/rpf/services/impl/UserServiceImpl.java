@@ -9,12 +9,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.rishi.rpf.entity.Providers;
 import com.rishi.rpf.entity.User;
 import com.rishi.rpf.helpers.AppConstants;
 import com.rishi.rpf.helpers.Helper;
 import com.rishi.rpf.helpers.ResourceNotFoundException;
 import com.rishi.rpf.repository.UserRepository;
-// import com.rishi.scm.services.EmailService;
+import com.rishi.rpf.services.EmailService;
 import com.rishi.rpf.services.UserService;
 
 @Service
@@ -25,7 +26,7 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
 
-    // private EmailService emailService;
+    private EmailService emailService;
 
     private Helper helper;
 
@@ -33,10 +34,11 @@ public class UserServiceImpl implements UserService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder,
-            Helper helper) {
+            Helper helper, EmailService emailService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.helper = helper;
+        this.emailService = emailService;
     }
 
     
@@ -55,13 +57,20 @@ public class UserServiceImpl implements UserService {
         user.setRoleList(List.of(AppConstants.ROLE_USER));
         // user.setProfile(user)
 
-        logger.info(user.getProvider().toString());
+        // Ensure provider is set (default to SELF if null)
+        if (user.getProvider() == null) {
+            user.setProvider(Providers.SELF);
+        }
+        logger.info("User provider: {}", user.getProvider());
 
         String emailToken = UUID.randomUUID().toString();
         // user.setEmailToken(emailToken);
         User savedUser = userRepository.save(user);
-        // String emailLink = Helper.getLinkForEmailVerification(emailToken);
-        // emailService.sendEmail(savedUser.getEmail(), "Verify Account : Smart  Contact Manager", emailLink);
+        try{
+            emailService.sendEmail(savedUser.getEmail(), "Welcome to Room Partner Finder", "Hello " + savedUser.getName() + ", your account has been created successfully.");
+        }catch(Exception ex){
+            logger.warn("Failed to send welcome email: {}", ex.getMessage());
+        }
         return savedUser;
         // return userRepository.save(user);
     }
@@ -121,6 +130,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email).orElse(null);
+    }
+
+    @Override
+    public List<User> filterUsers(String state, String city, String area, String college, String religion, String occupation, String gender, Integer age, String foodPreference) {
+        return userRepository.filterUsers(state, city, area, college, religion, occupation, gender, age, foodPreference);
+    }
+
+    @Override
+    public boolean resetPassword(String email, String newPassword) {
+        User user = getUserByEmail(email);
+        if (user == null) {
+            logger.warn("User not found for email: {}", email);
+            return false;
+        }
+        
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+        logger.info("Password reset successfully for email: {}", email);
+        return true;
     }
 
 }

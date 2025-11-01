@@ -25,4 +25,10 @@ public interface UserService {
 
     User getUserByEmail(String email);
 
+    // Add filterUsers for filtering partners
+    List<User> filterUsers(String state, String city, String area, String college, String religion, String occupation, String gender, Integer age, String foodPreference);
+
+    // Password reset methods
+    boolean resetPassword(String email, String newPassword);
+
 }

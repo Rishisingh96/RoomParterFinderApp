@@ -142,3 +142,50 @@ citySel.onchange = () => {
     collegeSel.innerHTML = `<option value="">Select College</option>`;
   }
 };
+
+document.getElementById("filterForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const params = new URLSearchParams(new FormData(this)).toString();
+  fetch("/user/filter?" + params)
+    .then((res) => {
+      if (!res.ok) throw new Error("Network response was not ok");
+      return res.json();
+    })
+    .then((data) => {
+      let html = "";
+      if (data.length === 0) {
+        html =
+          '<tr><td colspan="10" class="text-center py-4">No matching partner found.</td></tr>';
+      } else {
+        data.forEach((user) => {
+          const c =
+            user.contacts && user.contacts.length > 0 ? user.contacts[0] : {};
+          html += `<tr>
+            <td class="px-4 py-2"><a class="text-blue-400 underline" href="/user/view/${
+              user.userId
+            }">${user.name || ""}</a></td>
+            <td class="px-4 py-2">${c.state || ""}</td>
+            <td class="px-4 py-2">${c.city || ""}</td>
+            <td class="px-4 py-2">${c.area || ""}</td>
+            <td class="px-4 py-2">${c.college || ""}</td>
+            <td class="px-4 py-2">${c.religion || ""}</td>
+            <td class="px-4 py-2">${c.occupation || ""}</td>
+            <td class="px-4 py-2">${c.gender || ""}</td>
+            <td class="px-4 py-2">${c.age || ""}</td>
+            <td class="px-4 py-2">${c.foodType || ""}</td>
+          </tr>`;
+        });
+      }
+      document.getElementById("resultsTableBody").innerHTML = html;
+      console.log("Filtered Data:", data);
+    })
+    .catch((err) => {
+      err.response && err.response.text
+        ? err.response
+            .text()
+            .then((txt) => console.error("Fetch error (HTML):", txt))
+        : console.error("Fetch error:", err);
+      document.getElementById("resultsTableBody").innerHTML =
+        '<tr><td colspan="10" class="text-center py-4 text-red-500">Error fetching data.</td></tr>';
+    });
+});

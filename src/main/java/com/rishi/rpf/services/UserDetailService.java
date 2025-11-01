@@ -1,4 +1,4 @@
-package com.rishi.rpf.services.impl;
+package com.rishi.rpf.services;
 
 public interface UserDetailService {
 

@@ -3,6 +3,7 @@ package com.rishi.rpf.helpers;
 public class AppConstants {
     public static final String APP_NAME = "SmartContactManager";
     public static final String ROLE_USER = "ROLE_USER";
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
 
     
     public static final int CONTACT_IMAGE_WIDTH = 500;

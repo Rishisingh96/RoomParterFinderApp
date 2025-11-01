@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  th:replace="~{main :: parent(~{::#content},~{::title},~{::script})}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title th:text="${userView != null ? userView.name : 'Profile'}">
+      Profile
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <section
+      id="content"
+      class="min-h-screen bg-[#0f172a] text-white flex justify-center py-10"
+    >
+      <div
+        class="bg-gray-900 border border-indigo-700/50 p-6 md:p-8 rounded-2xl shadow-2xl max-w-3xl mx-4 w-full transition-all duration-300"
+      >
+        <div class="flex flex-col md:flex-row items-center md:items-start">
+          <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+            <div
+              class="w-28 h-28 rounded-full bg-indigo-800 flex items-center justify-center border-4 border-indigo-500 shadow-xl overflow-hidden"
+            >
+              <img
+                th:if="${userView != null}"
+                th:src="${userView.profilePic}"
+                alt="Avatar"
+                class="w-full h-full object-cover"
+              />
+              <span th:if="${userView == null}" class="text-5xl text-indigo-200"
+                >👤</span
+              >
+            </div>
+          </div>
+          <div class="flex-grow text-center md:text-left w-full">
+            <div class="mb-1">
+              <p
+                class="font-extrabold text-2xl text-indigo-400"
+                th:text="${userView.name}"
+              >
+                User Name
+              </p>
+              <p class="text-gray-400 mt-0.5">
+                <span
+                  th:text="${#lists.isEmpty(userView.contacts)? '': userView.contacts.get(0).state}"
+                  >State</span
+                >,
+                <span
+                  th:text="${#lists.isEmpty(userView.contacts)? '': userView.contacts.get(0).city}"
+                  >City</span
+                >,
+                <span
+                  th:text="${#lists.isEmpty(userView.contacts)? '': userView.contacts.get(0).area}"
+                  >Area</span
+                >
+              </p>
+            </div>
+            <hr class="my-2 border-gray-700" />
+            <div>
+              <p class="text-gray-300">
+                <a
+                  class="text-indigo-300 underline"
+                  th:text="${#lists.isEmpty(userView.contacts)? '': userView.contacts.get(0).college}"
+                  >College</a
+                >,
+                <span
+                  th:text="${#lists.isEmpty(userView.contacts)? '': userView.contacts.get(0).occupation}"
+                  >Occupation</span
+                >,
+                <span
+                  th:text="${#lists.isEmpty(userView.contacts)? '': userView.contacts.get(0).gender}"
+                  >Gender</span
+                >,
+                <span
+                  th:text="${#lists.isEmpty(userView.contacts)? '': userView.contacts.get(0).religion}"
+                  >Religion</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+          <div class="bg-gray-800 rounded-xl p-4">
+            <h3 class="font-semibold text-indigo-300 mb-2">Contact</h3>
+            <p>
+              <span class="opacity-70">Email:</span>
+              <span th:text="${userView.email}">email@example.com</span>
+            </p>
+            <p>
+              <span class="opacity-70">Phone/WhatsApp:</span>
+              <span th:text="${userView.phoneNumber}">0000000000</span>
+            </p>
+          </div>
+          <div class="bg-gray-800 rounded-xl p-4">
+            <h3 class="font-semibold text-indigo-300 mb-2">Food & Age</h3>
+            <p>
+              <span class="opacity-70">Food:</span>
+              <span
+                th:text="${#lists.isEmpty(userView.contacts)? '': userView.contacts.get(0).foodType}"
+                >Veg</span
+              >
+            </p>
+            <p>
+              <span class="opacity-70">Age:</span>
+              <span
+                th:text="${#lists.isEmpty(userView.contacts)? '': userView.contacts.get(0).age}"
+                >22</span
+              >
+            </p>
+          </div>
+          <div class="bg-gray-800 rounded-xl p-4 md:col-span-2">
+            <h3 class="font-semibold text-indigo-300 mb-2">About</h3>
+            <p th:text="${userView.about}">About user ...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
