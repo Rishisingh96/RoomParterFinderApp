@@ -6,63 +6,161 @@
 >
   <head>
     <meta charset="UTF-8" />
-    <title>Admin Panel</title>
-    <link rel="stylesheet" th:href="@{/static/css/style.css}" />
-    <script defer th:src="@{/static/js/admin.js}"></script>
-    <style>
-      .btn {
-        padding: 6px 10px;
-        border-radius: 6px;
-      }
-      .btn-primary {
-        background: #0ea5e9;
-        color: #fff;
-      }
-      .btn-red {
-        background: #ef4444;
-        color: #fff;
-      }
-      .btn-gray {
-        background: #6b7280;
-        color: #fff;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-      th,
-      td {
-        padding: 8px 10px;
-        border-bottom: 1px solid #334155;
-      }
-    </style>
+    <title>Admin Dashboard</title>
+    <script defer data-th-src="@{'/js/admin.js'}"></script>
   </head>
   <body>
     <section id="content" class="text-gray-900 dark:text-white">
-      <h1 class="text-2xl font-semibold mb-4">Admin Panel</h1>
-
-      <div class="mb-4 flex gap-4">
-        <button id="refreshBtn" class="btn btn-primary">Refresh Users</button>
-        <div id="stats" class="text-sm opacity-80"></div>
+      <!-- Page header -->
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h1 class="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            Manage all users, roles, and account status from one place.
+          </p>
+        </div>
+        <button
+          id="refreshBtn"
+          class="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+        >
+          <i class="fa-solid fa-rotate-right mr-2"></i>
+          Refresh
+        </button>
       </div>
 
-      <div class="overflow-x-auto">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Enabled</th>
-              <th>Roles</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="adminUsersBody">
-            <tr>
-              <td colspan="5">Loading...</td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Stats cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div
+          class="p-4 rounded-xl bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700"
+        >
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-gray-500 uppercase">
+                Total Users
+              </p>
+              <p
+                class="mt-2 text-2xl font-bold text-gray-900 dark:text-white"
+                data-th-text="${totalUsers}"
+              >
+                0
+              </p>
+            </div>
+            <div
+              class="h-10 w-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center dark:bg-blue-900/40"
+            >
+              <i class="fa-solid fa-users"></i>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="p-4 rounded-xl bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700"
+        >
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-gray-500 uppercase">
+                Admins
+              </p>
+              <p
+                class="mt-2 text-2xl font-bold text-gray-900 dark:text-white"
+                data-th-text="${totalAdmins}"
+              >
+                0
+              </p>
+            </div>
+            <div
+              class="h-10 w-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center dark:bg-purple-900/40"
+            >
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="p-4 rounded-xl bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700"
+        >
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-gray-500 uppercase">
+                Dashboard Stats
+              </p>
+              <p
+                id="stats"
+                class="mt-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
+                Loading...
+              </p>
+            </div>
+            <div
+              class="h-10 w-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center dark:bg-emerald-900/40"
+            >
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="p-4 rounded-xl bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700"
+        >
+          <p class="text-xs font-semibold text-gray-500 uppercase mb-1">
+            Quick Tips
+          </p>
+          <ul class="text-xs text-gray-600 dark:text-gray-300 space-y-1">
+            <li>• Use Enable/Disable to block or unblock users.</li>
+            <li>• Promote users you trust to Admin.</li>
+            <li>• Delete accounts that violate rules.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Users table card -->
+      <div
+        class="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl shadow-sm"
+      >
+        <div
+          class="px-4 py-3 border-b border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+        >
+          <div>
+            <h2 class="text-lg font-semibold">All Users</h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400">
+              Search, filter and manage user accounts.
+            </p>
+          </div>
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <input
+              id="adminSearch"
+              type="text"
+              placeholder="Search by name or email..."
+              class="w-full sm:w-64 px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900/60 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm">
+            <thead class="bg-gray-50 dark:bg-gray-900/60 text-gray-600 dark:text-gray-300">
+              <tr>
+                <th class="px-4 py-3 text-left font-semibold">Name</th>
+                <th class="px-4 py-3 text-left font-semibold">Email</th>
+                <th class="px-4 py-3 text-left font-semibold">Status</th>
+                <th class="px-4 py-3 text-left font-semibold">Roles</th>
+                <th class="px-4 py-3 text-left font-semibold">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminUsersBody" class="divide-y divide-gray-100 dark:divide-gray-700">
+              <tr>
+                <td colspan="5" class="px-4 py-4 text-center text-gray-500 dark:text-gray-400">
+                  Loading users...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="px-4 py-3 border-t border-gray-100 dark:border-gray-700 text-xs text-gray-500 dark:text-gray-400 flex justify-between">
+          <span>Tip: Use desktop for best admin experience.</span>
+          <span>Admin Panel · RoomPartnerFinder</span>
+        </div>
       </div>
     </section>
   </body>

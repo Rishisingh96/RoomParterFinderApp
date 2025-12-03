@@ -62,11 +62,13 @@ public class myController {
         return "contact";
     }
 
-    @GetMapping("/admin")
-    public String admin() {
-        System.out.println("admin page open");
-        return "admin";
-    }
+    // Old admin mapping (now handled by AdminController with proper security and dashboard)
+    // Keeping this commented to avoid ambiguous mapping for "/admin"
+    // @GetMapping("/admin")
+    // public String admin() {
+    //     System.out.println("admin page open");
+    //     return "admin";
+    // }
 
     //this is login controller
     @GetMapping("/login")

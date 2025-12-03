@@ -6,6 +6,7 @@ let currentTheme = getTheme();
 
 document.addEventListener("DOMContentLoaded", () => {
   changeTheme();
+  setActiveNavigation(); // Set active navigation state
 });
 
 //TODO:
@@ -60,9 +61,45 @@ function changePageTheme(theme, oldTheme) {
     .querySelector("span").textContent = theme == "light" ? "Dark" : "Light";
 }
 
+// Set active navigation link based on current URL
+function setActiveNavigation() {
+  const currentPath = window.location.pathname;
+  const navLinks = document.querySelectorAll('nav a[href]');
+  
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#')) return;
+    
+    try {
+      const linkUrl = new URL(href, window.location.origin);
+      const linkPath = linkUrl.pathname;
+      
+      // Check if current path matches link path
+      const isActive = 
+        currentPath === linkPath || 
+        (linkPath === '/' && (currentPath === '/' || currentPath === '/home')) ||
+        (linkPath !== '/' && currentPath.startsWith(linkPath));
+      
+      if (isActive) {
+        // Add active classes
+        link.classList.add('md:text-blue-600', 'md:dark:text-blue-400', 'font-semibold', 'border-b-2', 'border-blue-600', 'dark:border-blue-400');
+        link.classList.remove('text-gray-900', 'dark:text-white');
+      } else {
+        // Remove active classes if not current page
+        link.classList.remove('md:text-blue-600', 'md:dark:text-blue-400', 'font-semibold', 'border-b-2', 'border-blue-600', 'dark:border-blue-400');
+      }
+    } catch (e) {
+      // If href is relative, compare directly
+      if (currentPath === href || (href === '/' && currentPath === '/home')) {
+        link.classList.add('md:text-blue-600', 'md:dark:text-blue-400', 'font-semibold', 'border-b-2', 'border-blue-600', 'dark:border-blue-400');
+      }
+    }
+  });
+}
+
 //change page change theme
 
-// Your JavaScript code snippet handles theme switching between dark and light modes, with the current theme being saved in localStorage and applied to the page. Let’s break down the code and make sure it works effectively:
+// Your JavaScript code snippet handles theme switching between dark and light modes, with the current theme being saved in localStorage and applied to the page. Let's break down the code and make sure it works effectively:
 
 // Breakdown of the Code
 // Initialization and Theme Retrieval
