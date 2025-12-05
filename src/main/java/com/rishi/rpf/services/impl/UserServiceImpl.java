@@ -19,18 +19,13 @@ import com.rishi.rpf.services.EmailService;
 import com.rishi.rpf.services.UserService;
 
 @Service
+
 public class UserServiceImpl implements UserService {
   
     private UserRepository userRepository;
-
     private PasswordEncoder passwordEncoder;
-
-
     private EmailService emailService;
-
     private Helper helper;
-
-    
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder,
