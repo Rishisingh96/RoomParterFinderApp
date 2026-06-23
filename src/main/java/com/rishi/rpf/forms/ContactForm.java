@@ -3,7 +3,6 @@ package com.rishi.rpf.forms;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.rishi.rpf.validators.ValidFile;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -75,7 +74,7 @@ public class ContactForm {
     // size
     // resolution
 
-   @ValidFile(message = "Invalid File")
+    @ValidFile(message = "Invalid File")
     private MultipartFile contactImage;
 
     private String picture;

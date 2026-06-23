@@ -132,7 +132,6 @@ public class OAuthAuthenticationSuccessHandler implements AuthenticationSuccessH
         }
         new DefaultRedirectStrategy().sendRedirect(request, response, "/user/profile");
     }
-
     public void setLogger(Logger logger) {
         this.logger = logger;
     }

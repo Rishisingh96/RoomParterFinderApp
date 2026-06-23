@@ -63,7 +63,7 @@ public class User implements UserDetails {
     // private boolean emailVerified = false; // for testing purpose
     private boolean phoneVerified = false;
     
-// SELF, GOOGLE, FACEBOOK, TWITTER, LINKEDIN, GITHUB
+    // SELF, GOOGLE, FACEBOOK, TWITTER, LINKEDIN, GITHUB
     @Enumerated(value = EnumType.STRING)
     private Providers provider = Providers.SELF;
 
@@ -76,13 +76,14 @@ public class User implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roleList = new ArrayList<>();
 
-  private String emailToken;
+    private String emailToken;
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // list of roles [USER , ADMIN]
         // Collection of SimpGrantedAuthority[roles{ADMIN,USER}]
-        Collection<SimpleGrantedAuthority> roles = roleList.stream().map(role -> new SimpleGrantedAuthority(role))
+        Collection<SimpleGrantedAuthority> roles = roleList.stream().map(role ->
+                        new SimpleGrantedAuthority(role))
                 .collect(Collectors.toList());
         return roles;
     }

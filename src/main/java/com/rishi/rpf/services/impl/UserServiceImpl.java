@@ -62,7 +62,8 @@ public class UserServiceImpl implements UserService {
         // user.setEmailToken(emailToken);
         User savedUser = userRepository.save(user);
         try{
-            emailService.sendEmail(savedUser.getEmail(), "Welcome to Room Partner Finder", "Hello " + savedUser.getName() + ", your account has been created successfully.");
+            emailService.sendEmail(savedUser.getEmail(), "Welcome to Room Partner Finder",
+                    "Hello " + savedUser.getName() + ", your account has been created successfully.");
         }catch(Exception ex){
             logger.warn("Failed to send welcome email: {}", ex.getMessage());
         }
